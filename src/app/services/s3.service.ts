@@ -1,6 +1,5 @@
 import {Injectable, OnInit} from '@angular/core';
 import {
-  S3,
   S3Client,
   S3ClientConfig,
   ListBucketsCommand,
@@ -8,7 +7,6 @@ import {
   Bucket,
   S3ClientResolvedConfig
 } from "@aws-sdk/client-s3"
-import {inflate} from "zlib";
 @Injectable({
   providedIn: 'root'
 })
@@ -40,6 +38,10 @@ export class S3Service  implements OnInit {
     catch (e) {
       return []
     }
+  }
+
+  public async DeleteFile() : Promise<boolean> {
+    return false
   }
 
 

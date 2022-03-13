@@ -2,37 +2,51 @@
 
 
 
-
   <div mat-dialog-content>
     <form>
       <mat-form-field>
         <mat-label>Region</mat-label>
-        <input matInput value="end" formControlName="region"/>
+	<input 
+	matInput 
+       [(ngModel)]="modalData.region" 
+	formControlName="region" 
+	placeholder="us-east-2"/>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Endpoint</mat-label>
-        <input matInput Type="text" value="end" formControlName="accessKeySecret"/>
+        <input 
+		matInput 
+		Type="text" 
+		[(ngModel)]="modalData.endpoint" 
+		formControlName="endpoint"
+		placeholder="https://us-east-2.amazonaws.com/bucketname"/>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Access Key</mat-label>
-        <input matInput value="end" formControlName="accessKeyId"/>
+        <input 
+		matInput 
+		[(ngModel)]="modalData.accessKeyId"
+		formControlName="accessKeyId"
+		placeholder="Your S3 access key ID"/>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Secret Key</mat-label>
-        <input matInput Type="password" value="end" formControlName="accessKeySecret"/>
+	<input 
+		matInput 
+		Type="password" 
+		[(ngModel)]="modalData.accessKeySecret"
+		formControlName="accessKeySecret"
+		placeholder="Your S3 Secret key"/>
       </mat-form-field>
     </form>
   </div>
-
-
-
+  
   <div mat-dialog-actions>
-
-    <button mat-button>
-      save
+	  <div class="spacer"></div>
+    <button mat-raised-button color="primary" (click)="">
+      Save
     </button>
-    <div class="spacer"></div>
-    <button mat-button color="danger" (click)="closeWithResult(null)">
+    <button mat-raised-button  color="danger" (click)="close()">
       Cancel
     </button>
   </div>

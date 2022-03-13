@@ -11,15 +11,34 @@ export class S3clientSetupModalComponent implements OnInit {
 
   @Input('dialog') dialog : boolean = false
 
+  modalData : IS3ClientModalFormData = {} as IS3ClientModalFormData;
+
+
+
   constructor(public dialogRef : MatDialogRef<S3clientSetupModalComponent>, @Inject(MAT_DIALOG_DATA) public data : S3ClientResolvedConfig | undefined | null) {}
+
+
 
 
   ngOnInit(): void {
   }
 
-  closeWithResult(data : any) {
-    this.dialogRef.close(data)
+  SavedData() {
+	  this.dialogRef.close(this.modalData);
+  }
+
+  close() {
+    this.dialogRef.close()
 
   }
 
+}
+
+
+
+interface IS3ClientModalFormData {
+	region?: string;
+	endpoint?: string;
+	accessKeyId?: string;
+	accessKeySecret?: string;
 }
