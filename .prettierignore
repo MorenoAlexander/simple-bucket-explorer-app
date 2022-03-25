@@ -1,0 +1,13 @@
+index.html
+.browserslistrc
+.editorconfig
+.gitignore
+angular.json
+karma.conf.js
+package.json
+package-lock.json
+README.md
+tsconfig.json
+tsconfig.app.json
+
+node_modules

@@ -8,9 +8,8 @@ describe('S3clientSetupModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ S3clientSetupModalComponent ]
-    })
-    .compileComponents();
+      declarations: [S3clientSetupModalComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

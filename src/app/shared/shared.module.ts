@@ -1,16 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatCardModule } from "@angular/material/card"
-import { MatInputModule } from "@angular/material/input"
-import { MatIconModule } from "@angular/material/icon";
-import { MatToolbarModule } from "@angular/material/toolbar";
-import {MatButtonModule} from "@angular/material/button";
-import {MatTableModule} from "@angular/material/table";
-import { MatDialogConfig, MatDialogModule} from "@angular/material/dialog";
-import {MatDividerModule} from "@angular/material/divider";
-import {ReactiveFormsModule} from "@angular/forms";
-
-
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const modules = [
   MatCardModule,
@@ -21,17 +19,13 @@ const modules = [
   MatTableModule,
   MatDialogModule,
   MatDividerModule,
-  ReactiveFormsModule
-]
-
+  ReactiveFormsModule,
+];
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    ...modules
-  ],
+  imports: [CommonModule, ...modules],
   exports: [...modules],
-  providers: [MatDialogConfig]
+  providers: [MatDialogConfig],
 })
-export class SharedModule { }
+export class SharedModule {}
