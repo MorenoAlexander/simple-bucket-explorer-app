@@ -1,37 +1,44 @@
 import { Injectable, OnInit } from '@angular/core';
 import {
-  S3Client,
-  S3ClientConfig,
   ListBucketsCommand,
   ListBucketsCommandInput,
-  Bucket,
+  ListObjectsCommand,
+  S3Client,
+  S3ClientConfig,
   S3ClientResolvedConfig,
 } from '@aws-sdk/client-s3';
+import { S3 } from 'aws-sdk';
+import { Bucket } from 'aws-sdk/clients/s3';
 @Injectable({
   providedIn: 'root',
 })
 export class S3Service implements OnInit {
-  private s3Client: S3Client | null = null;
+  private S3Client: S3 | null = null;
   public constructor() {}
 
   ngOnInit(): void {}
 
   public initS3Client(options: S3ClientConfig) {
-    this.s3Client = new S3Client(options);
-  }
-
-  get options(): S3ClientResolvedConfig | undefined {
-    return this.s3Client?.config;
+    this.S3Client = new S3({
+      region: options.region as string,
+      endpoint: options.endpoint as string,
+      sslEnabled: false,
+      s3ForcePathStyle: true,
+      credentials: {
+        //@ts-expect-error
+        accessKeyId: options.credentials?.accessKeyId || '',
+        //@ts-expect-error
+        secretAccessKey: options.credentials?.secretAccessKey || '',
+      },
+    });
   }
 
   public async GetAllBuckets(): Promise<Bucket[]> {
     try {
-      const data = await this.s3Client?.send(new ListBucketsCommand({}));
-      if (!!data && !!data.Buckets) {
-        return data.Buckets;
-      }
-      return [];
-    } catch (e) {
+      const data = await this.S3Client?.listBuckets().promise();
+      console.log(data);
+      return data?.Buckets || [];
+    } catch (error) {
       return [];
     }
   }

@@ -1,44 +1,44 @@
 <h2 mat-dialog-title>Configure S3 settings</h2>
 
 <div mat-dialog-content>
-  <form>
-    <mat-form-field>
+  <form [formGroup]="form" (ngSubmit)="SavedData()" class="s3-form">
+    <mat-form-field appearance="fill">
       <mat-label>Region</mat-label>
-      <input
-        matInput
-        [(ngModel)]="modalData.region"
-        formControlName="region"
-        placeholder="us-east-2"
-      />
+      <input matInput placeholder="us-east-2" formControlName="region" />
+      <mat-hint>The region you have your S3 instance in.</mat-hint>
+      <mat-error>Region is required</mat-error>
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field appearance="fill">
       <mat-label>Endpoint</mat-label>
       <input
         matInput
-        Type="text"
-        [(ngModel)]="modalData.endpoint"
         formControlName="endpoint"
+        type="text"
         placeholder="https://us-east-2.amazonaws.com/bucketname"
       />
+      <mat-hint>The endpoint for your S3 bucket</mat-hint>
+      <mat-error>The endpoint is required.</mat-error>
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field appearance="fill">
       <mat-label>Access Key</mat-label>
       <input
         matInput
-        [(ngModel)]="modalData.accessKeyId"
         formControlName="accessKeyId"
         placeholder="Your S3 access key ID"
       />
+      <mat-hint>Your S3 Access Key</mat-hint>
+      <mat-error>The Access Key Id is required.</mat-error>
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field appearance="fill">
       <mat-label>Secret Key</mat-label>
       <input
         matInput
-        Type="password"
-        [(ngModel)]="modalData.accessKeySecret"
-        formControlName="accessKeySecret"
+        type="password"
+        formControlName="secretAccessKey"
         placeholder="Your S3 Secret key"
       />
+      <mat-hint>Your S3 Secret key.</mat-hint>
+      <mat-error>The Secret Access Key is required.</mat-error>
     </mat-form-field>
   </form>
 </div>

@@ -1,4 +1,5 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   MatDialog,
   MatDialogRef,
@@ -12,6 +13,7 @@ import { S3ClientResolvedConfig } from '@aws-sdk/client-s3';
   styleUrls: ['./s3client-setup-modal.component.scss'],
 })
 export class S3clientSetupModalComponent implements OnInit {
+  form!: FormGroup;
   @Input('dialog') dialog: boolean = false;
 
   modalData: IS3ClientModalFormData = {} as IS3ClientModalFormData;
@@ -19,13 +21,23 @@ export class S3clientSetupModalComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<S3clientSetupModalComponent>,
     @Inject(MAT_DIALOG_DATA)
-    public data: S3ClientResolvedConfig | undefined | null
+    public data: S3ClientResolvedConfig | undefined | null,
+    private fb: FormBuilder
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.form = this.fb.group({
+      region: [null, [Validators.required]],
+      endpoint: [null, [Validators.required]],
+      accessKeyId: [null, [Validators.required]],
+      secretAccessKey: [null, [Validators.required]],
+    });
+  }
 
   SavedData() {
-    this.dialogRef.close(this.modalData);
+    const data: IS3ClientModalFormData = this.form.value;
+    console.table(data);
+    this.dialogRef.close(data);
   }
 
   close() {
