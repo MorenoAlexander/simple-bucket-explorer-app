@@ -1,12 +1,12 @@
 import { Injectable, OnInit } from '@angular/core';
-import {
-  ListBucketsCommand,
-  ListBucketsCommandInput,
-  ListObjectsCommand,
-  S3Client,
-  S3ClientConfig,
-  S3ClientResolvedConfig,
-} from '@aws-sdk/client-s3';
+// import {
+//   ListBucketsCommand,
+//   ListBucketsCommandInput,
+//   ListObjectsCommand,
+//   S3Client,
+//   S3ClientConfig,
+//   S3ClientResolvedConfig,
+// } from '@aws-sdk/client-s3';
 import { S3 } from 'aws-sdk';
 import { Bucket } from 'aws-sdk/clients/s3';
 @Injectable({
