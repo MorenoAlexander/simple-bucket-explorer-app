@@ -13,34 +13,33 @@ import { Bucket } from 'aws-sdk/clients/s3';
   providedIn: 'root',
 })
 export class S3Service implements OnInit {
-  private S3Client: S3 | null = null;
+  private S3Client!: S3;
   public constructor() {}
 
   ngOnInit(): void {}
 
-  public initS3Client(options: S3ClientConfig) {
-    this.S3Client = new S3({
-      region: options.region as string,
-      endpoint: options.endpoint as string,
-      sslEnabled: false,
-      s3ForcePathStyle: true,
-      credentials: {
-        //@ts-expect-error
-        accessKeyId: options.credentials?.accessKeyId || '',
-        //@ts-expect-error
-        secretAccessKey: options.credentials?.secretAccessKey || '',
-      },
-    });
+  public initS3Client(options: S3.ClientConfiguration): void {
+    this.S3Client = new S3(options);
   }
 
   public async GetAllBuckets(): Promise<Bucket[]> {
     try {
-      const data = await this.S3Client?.listBuckets().promise();
-      console.log(data);
-      return data?.Buckets || [];
+      // const data = await this.S3Client?.listBuckets().promise();
+      // console.log(data);
+      // return data?.Buckets || [];
+
+      this.S3Client.listBuckets((err, data) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(data);
+        }
+      });
     } catch (error) {
       return [];
     }
+
+    return [];
   }
 
   public async DeleteFile(): Promise<boolean> {
