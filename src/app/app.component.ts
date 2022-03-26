@@ -22,12 +22,15 @@ export class AppComponent {
       this.s3Service.initS3Client({
         region: result.region,
         endpoint: result.endpoint,
+        sslEnabled: false,
+        s3ForcePathStyle: true,
+        accessKeyId: result.accessKeyId,
+        secretAccessKey: result.secretAccessKey,
         credentials: {
           accessKeyId: result.accessKeyId,
           secretAccessKey: result.accessKeySecret,
         },
       });
-      console.log(`Dialog result: ${result}`);
     });
   }
 

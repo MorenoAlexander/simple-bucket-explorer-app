@@ -53,9 +53,13 @@ import 'zone.js'; // Included with Angular CLI.
  */
 
 (window as any).global = window;
-(window as any).global.util =
-  (window as any).global.util || require('util').util;
+// (window as any).global.util =
+//   (window as any).global.util || require('util').util;
 
-(window as any).process = {
-  env: { debug: undefined, NODE_DEBUG: true },
-};
+// (window as any).global.process = {
+//   env: { debug: undefined, NODE_DEBUG: true },
+// };
+
+if (typeof (window as any).global === 'undefined') {
+  (window as any).global = window;
+}
