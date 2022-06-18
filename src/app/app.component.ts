@@ -39,7 +39,7 @@ export class AppComponent {
   }
 
   async refresh() {
-    const data = await this.s3Service.GetAllBuckets();
-    console.log(data);
+    await this.s3Service.GetAllBuckets();
+    
   }
 }
